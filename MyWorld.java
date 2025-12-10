@@ -3,7 +3,7 @@ import greenfoot.*;
 public class MyWorld extends World {
     int unitWidth = 80;
     
-    public Player player = new Player();
+    public PlayerController player = new PlayerController();
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -19,7 +19,7 @@ public class MyWorld extends World {
     private void prepare()
     {
         Counter counter = new Counter();
-        addObject(counter,787,348);
+        addObject(counter,0,0);
         Counter counter2 = new Counter();
         addObject(counter2,668,462);
     }
