@@ -67,9 +67,6 @@ public class MyWorld extends World {
             counter10[i] = new NormalCounter();
             addObject(counter10[i],(i+2)*unitWidth + counterOffset, 5*unitWidth + counterOffset);
         }
-        
-        
-        
     }
     
     public void getFood() {
