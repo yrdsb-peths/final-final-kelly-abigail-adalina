@@ -9,10 +9,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StoveCounter extends Counter
 {
     private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.PNG");
+<<<<<<< HEAD
     int width = 60;
     
     public StoveCounter() {
         stoveCounter.scale(width, width);
+=======
+    private GreenfootImage startingPot = new GreenfootImage
+    public StoveCounter() {
+        setImage()
+>>>>>>> main
         setImage (stoveCounter);
     }
     /**
