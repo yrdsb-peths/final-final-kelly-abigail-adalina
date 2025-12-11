@@ -8,8 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerImage extends Actor
 {
+    private static final GreenfootImage FRONT = new GreenfootImage ("images/playerBlueFront.png");
+    private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.png");
+    private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.png");
+    private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.png");
+    
     public PlayerImage() {
-        setImage("images/playerBlueFront.PNG");
+        setImage(FRONT);
     }
     /**
      * Act - do whatever the PlayerImage wants to do. This method is called whenever
@@ -19,6 +24,19 @@ public class PlayerImage extends Actor
     {
         // Add your action code here.
         moveWithPlayerController();
+        changeDirection();
+    }
+    
+    public void changeDirection() {
+        if (Greenfoot.isKeyDown("left")) {
+            setImage(LEFT);
+        } else if (Greenfoot.isKeyDown("right")) {
+            setImage(RIGHT);
+        } else if (Greenfoot.isKeyDown("Up")) {
+            setImage(BACK);
+        } else if (Greenfoot.isKeyDown("Down")) {
+            setImage(FRONT);
+        }
     }
     
     /**

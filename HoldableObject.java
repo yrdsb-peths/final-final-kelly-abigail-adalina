@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Food extends Actor
+public class HoldableObject extends Actor
 {
     /**
      * Act - do whatever the Food wants to do. This method is called whenever
@@ -14,14 +14,12 @@ public class Food extends Actor
      */
     private boolean isBeingHeld;
 
-    public Food () {
-        isBeingHeld = true;
-        setImage ("images/mushroom.PNG");
+    public HoldableObject () {
     }
     public void act()
     {
+        //move with the player when it is being held
         moveWithPlayer();
-        
     }
     
     public void moveWithPlayer() {

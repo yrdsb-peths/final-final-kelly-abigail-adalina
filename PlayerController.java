@@ -16,7 +16,7 @@ public class PlayerController extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public PlayerController () {
-        setImage ("images/emptyController.PNG");
+        setImage ("images/emptyController.png");
     }
     public void act()
     {
