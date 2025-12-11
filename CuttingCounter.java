@@ -9,9 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CuttingCounter extends Counter
 {
     private GreenfootImage cuttingCounter = new GreenfootImage ("images/cuttingCounter.PNG");
+    int width = 60;
     
     public CuttingCounter() {
-        cuttingCounter.scale(70, 70);
+        cuttingCounter.scale(width, width);
         setImage (cuttingCounter);
     }
     

@@ -13,6 +13,7 @@ public class FoodCounter extends Counter
     private GreenfootImage mushroomCounter = new GreenfootImage ("images/mushroomCounter.PNG");
     private GreenfootImage tomatoCounter = new GreenfootImage ("images/tomatoCounter.PNG");
     private GreenfootImage onionCounter = new GreenfootImage ("images/onionCounter.PNG");
+    int width = 60;
     
     
     public FoodCounter(String type) {
@@ -20,13 +21,13 @@ public class FoodCounter extends Counter
         this.type = type;
         //set different images according to the vegtable type
         if (type.equals ("mushroom")) {
-            mushroomCounter.scale(70, 70);
+            mushroomCounter.scale(width, width);
             setImage (mushroomCounter);
         } else if (type.equals ("tomato")) {
-            tomatoCounter.scale(70, 70);
+            tomatoCounter.scale(width, width);
             setImage (tomatoCounter);
         } else if (type.equals ("onion")) {
-            onionCounter.scale(70, 70);
+            onionCounter.scale(width, width);
             setImage (onionCounter);
         }
     }

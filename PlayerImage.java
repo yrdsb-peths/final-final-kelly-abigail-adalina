@@ -14,6 +14,10 @@ public class PlayerImage extends Actor
     private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
     
     public PlayerImage() {
+        FRONT.scale (85, 135);
+        BACK.scale (85, 135);
+        LEFT.scale (85, 135);
+        RIGHT.scale (85, 135);
         setImage(FRONT);
     }
     /**
@@ -44,7 +48,7 @@ public class PlayerImage extends Actor
      * so that when the controller collide with the counter, 
      * its upper half may overlap the counter image to appear to be closer to it
      */
-    private int offSet = 35;
+    private int offSet = 15;
     public void moveWithPlayerController () {
         MyWorld world = (MyWorld) getWorld();
         setLocation (world.player.getX(), world.player.getY()-offSet);

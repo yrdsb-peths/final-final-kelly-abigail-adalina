@@ -11,14 +11,14 @@ public class PlayerController extends Actor
     //constant
     private static final int SPEED = 20;
     private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
-
+    int width = 60;
     
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public PlayerController () {
-        controller.scale(70,70);
+        controller.scale(width,width);
         setImage (controller);
     }
     public void act()

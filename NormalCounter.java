@@ -9,9 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NormalCounter extends Counter
 {
     private GreenfootImage normalCounter = new GreenfootImage ("images/normalCounter.PNG");
+    int width = 60;
     
     public NormalCounter() {
-        normalCounter.scale(70, 70);
+        normalCounter.scale(width, width);
         setImage (normalCounter);
     }
     /**
