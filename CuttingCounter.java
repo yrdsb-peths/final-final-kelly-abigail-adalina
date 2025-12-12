@@ -26,5 +26,9 @@ public class CuttingCounter extends Counter
     public void act()
     {
         checkIfSelected(selectedCuttingCounter, cuttingCounter);
+        
+        // if hes pressing on d cut the food
+        
+            
     }
 }
