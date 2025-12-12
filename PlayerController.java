@@ -102,10 +102,10 @@ public class PlayerController extends SuperSmoothMover
     
         // 2. If multiple → pick the one in front
         Counter best = null;
-        if (dir.equals("front") ) best= (Counter)getOneObjectAtOffset (0, 55, Counter.class);
-        else if (dir.equals("back") ) best= (Counter)getOneObjectAtOffset (0, -55, Counter.class);
-        else if (dir.equals("left") ) best= (Counter)getOneObjectAtOffset (-55, 0, Counter.class);
-        else if (dir.equals("right") ) best= (Counter)getOneObjectAtOffset (55, 0, Counter.class);
+        if (dir.equals("front") ) best = (Counter)getOneObjectAtOffset (0, 55, Counter.class);
+        else if (dir.equals("back") ) best = (Counter)getOneObjectAtOffset (0, -55, Counter.class);
+        else if (dir.equals("left") ) best = (Counter)getOneObjectAtOffset (-55, 0, Counter.class);
+        else if (dir.equals("right") ) best = (Counter)getOneObjectAtOffset (55, 0, Counter.class);
     
         return best;
     }

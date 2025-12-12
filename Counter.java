@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Counter extends Actor
 {
-    public Counter() {
+    public boolean checkIfSelected = false;
+    public Counter(){
     }
     
     /**
@@ -23,7 +24,12 @@ public class Counter extends Actor
         MyWorld world = (MyWorld)getWorld();
         Counter selected = world.player.getSelectedCounter();
     
-        if (this == selected) setImage(selectedImage);
-        else setImage(normalImage);
+        if (this == selected){
+            setImage(selectedImage);
+            checkIfSelected = true;
+        } else {
+            setImage(normalImage);
+            checkIfSelected = false;
+        }
     }
 }

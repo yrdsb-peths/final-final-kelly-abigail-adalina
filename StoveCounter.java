@@ -26,4 +26,9 @@ public class StoveCounter extends Counter
         // Add your action code here.
         checkIfSelected(selectedStoveCounter, stoveCounter);
     }
+    
+    public void placeFood()
+    {
+        //
+    }
 }
