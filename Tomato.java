@@ -9,10 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Tomato extends HoldableObject
 {    
     private GreenfootImage tomato = new GreenfootImage ("images/tomato.PNG");
+    private GreenfootImage choppedTomato = new GreenfootImage ("images/choppedTomato.PNG");
     int width = 80;
+    int width2 = 60;
     
     public Tomato() {
         tomato.scale(width, width);
+        choppedTomato.scale(width2, width2);
         setImage (tomato);
     }
     /**

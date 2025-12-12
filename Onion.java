@@ -9,10 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Onion extends HoldableObject
 {
     private GreenfootImage onion = new GreenfootImage("images/onion.PNG");
+    private GreenfootImage choppedOnion = new GreenfootImage ("images/choppedOnion.PNG");
     int width = 80;
+    int width2 = 60;
     
     public Onion() {
         onion.scale(width, width);
+        choppedOnion.scale(width2, width2);
         setImage (onion);
     }
     /**

@@ -11,16 +11,14 @@ public class StoveCounter extends Counter
     private GreenfootImage stoveCounter = new GreenfootImage ("images/stoveCounter.PNG");
     private GreenfootImage selectedStoveCounter = new GreenfootImage ("images/selectedStoveCounter.PNG");
     private GreenfootImage emptyPot = new GreenfootImage("images/emptyPot.PNG");
-    private Pots pots = new Pots();
-    int offset = 5;
+    int offset = 15;
     int width = 60;
     
     public StoveCounter() {
         stoveCounter.scale(width, width);
         selectedStoveCounter.scale(width, width);
+        emptyPot.scale(width, width);
         setImage (stoveCounter);
-        emptyPot.scale(width - offset, width - offset);
-        startingPot();
     }
     /**
      * Act - do whatever the stoveCounter wants to do. This method is called whenever
@@ -29,19 +27,15 @@ public class StoveCounter extends Counter
     public void act()
     {
         checkIfSelected(selectedStoveCounter, stoveCounter);
-        placeFood();
-    }
-    public void startingPot()
-    {
-        stoveCounter.drawImage(emptyPot, 1, -8);
     }
     
-    public void placeFood()
+    protected void addedToWorld(World w)
     {
-        if(isSelected)
-        {
-            World world = getWorld();
-            world.addObject(pots, getX(), getY());
-        }
+        Pot pot = new Pot();
+        pot.setImage(emptyPot);
+
+        // add pot at the stove's position
+        w.addObject(pot, getX(), getY()-offset);
+        this.setObjectOnTop(pot);
     }
 }

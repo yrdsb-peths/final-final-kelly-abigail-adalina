@@ -9,10 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Mushroom extends HoldableObject
 {
     private GreenfootImage mushroom = new GreenfootImage ("images/mushroom.PNG");
+    private GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
     int width = 80;
+    int width2 = 60;
     
     public Mushroom() {
         mushroom.scale(width, width);
+        choppedMushroom.scale(width2, width2);
         setImage (mushroom);
     }
     /**
