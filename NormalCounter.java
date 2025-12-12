@@ -23,7 +23,7 @@ public class NormalCounter extends Counter
      */
     public void act()
     {
-        // Add your action code here.
+        // check if being selected, if so, change image to selectedNormalCounter
         checkIfSelected (selectedNormalCounter, normalCounter);
         
     }
