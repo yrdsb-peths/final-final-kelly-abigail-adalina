@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=HoldableObject
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Food\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=HoldableObject()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveWithPlayer()
+comment4.params=isBeingHeld
+comment4.target=void\ setIsBeingHeld(boolean)
+comment5.params=
+comment5.target=boolean\ getIsBeingHeld()
+numComments=6
