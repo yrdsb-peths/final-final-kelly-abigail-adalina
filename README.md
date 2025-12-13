@@ -24,10 +24,24 @@ Copy the `project.greenfoot.md` file and rename it to `project.greenfoot`
 
 **Kelly**
 - [ ] Order generate system
-  * generagte random soup order with count-down timer bar 
-
+  * generagte random soup order with count-down timer bar
+     
+List of things to implement 
+- [ ] Order generate system
+  - [ ] create a private greenfoot image variable [private greenfootImage order;] (for later use)
+  - [ ] create a method of random number generator (generate number between 1 to 3)
+      - [ ]  using [int randomNum = (int)(Math.random() * (max - min + 1)) + min;]
+  - [ ] create an empty int array [private int[] orders = new int[#]; <-- input a larger number for storage] (maybe in the MyWorld class)
+  - [ ] create an array of x-values -- number of pixels evenly spaced (for x-possition of the order image)
+  - [ ] create a countdown method in MyWorld class that generates a new order after a certain period of time
+  - [ ] create a countdown method in the Order class that removes the order if it has not been delivered within the given time
+  - [ ] use the orders array to move the images forward when an order disapears
+     
 **Abigail**
 - [ ] stove system
+
+List of things to implement 
+- [ ] 
 
 **Adelina**
 - [ ] Asset/background image
