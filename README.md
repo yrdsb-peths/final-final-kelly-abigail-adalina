@@ -21,6 +21,19 @@ Copy the `project.greenfoot.md` file and rename it to `project.greenfoot`
 
 
 # Work update 
+possible work to do 
+- [ ] find background music (.mp3) and sound effects (.wave) below are some links to free music:
+  > besure to copy the credit
+   - [ ] [https://www.zapsplat.com/?authuser=0] (sound effects)
+   - [ ] [https://soundbible.com/?authuser=0] (sound effects)
+   - [ ] [https://mixkit.co/free-sound-effects/?authuser=0] (sound effects)
+   - [ ] [https://www.chosic.com/free-music/all/?authuser=0] (background music)
+- [ ] chopping ()
+   - [ ] in playerControl class
+       - [ ] create a new keyDown detector ("w") (you can also choose other keys)
+       - [ ] create a chopping method (private void chopping (){})
+           - [ ] 
+
 
 **Kelly**
 - [ ] Order generate system
