@@ -8,7 +8,13 @@ public class MyWorld extends World {
     public PlayerController player = new PlayerController();
     public PlayerImage playerImage = new PlayerImage();
     
-
+    private int[] slots = {100, 300, 500};
+    private int orderTimer = 0;
+    private int orderDelay = 180;
+    private int lifeSpan = 360;
+    
+    private Order[] activeOrders = new Order[3];
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -21,8 +27,68 @@ public class MyWorld extends World {
         
         //set up counter positions and player
         prepare();
+
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
+        
+        CuttingCounter cuttingCounter = new CuttingCounter();
+        addObject(cuttingCounter, 410, 330);
+        
+        spawnNextOrder();
+    }
+    
+    public void act()
+    {
+        orderTimer++;
+        
+        if (orderTimer >= orderDelay)
+        {
+            spawnNextOrder();
+            orderTimer = 0;
+        }
+        
+        for (int i = 0; i < activeOrders.length; i++)
+        {
+            if (activeOrders[i] != null)
+            {
+                activeOrders[i].incrementTimer();
+                if (activeOrders[i].getTimer() >= lifeSpan)
+                {
+                    removeObject(activeOrders[i]);
+                    activeOrders[i] = null;
+                }
+            }
+        }
+    }
+    
+    private void spawnNextOrder()
+    {
+                
+        for(int i = 0; i < activeOrders.length; i++)
+        {
+            if (activeOrders[i] == null)
+            {
+                Order order = randomOrder();
+                addObject(order, slots[i], 30);
+                activeOrders[i] = order;
+                break;
+            }
+        }
+    }
+    
+    public Order randomOrder()
+    {
+        int r = Greenfoot.getRandomNumber(3);
+        if (r == 0) 
+        {
+            return new MushroomSoupOrder();
+        } else if (r == 1)
+        {
+            return new OnionSoupOrder();
+        } else
+        {
+            return new TomatoSoupOrder();
+        }
     }
     
     /**
