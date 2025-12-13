@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Plate extends HoldableObject
 {
+    private GreenfootImage emptyPlate = new GreenfootImage ("images/emptyPlate.PNG");
     /**
      * Act - do whatever the Plate wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
