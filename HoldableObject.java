@@ -18,15 +18,19 @@ public class HoldableObject extends Actor
     }
     public void act()
     {
-        isBeingHeld = true;
-        //move with the player when it is being held
-        moveWithPlayer();
+        if (isBeingHeld) moveWithPlayer();
     }
     
     public void moveWithPlayer() {
         MyWorld world = (MyWorld) getWorld();
-        if (isBeingHeld) {
-            setLocation (world.player.getX(), world.player.getY());
-        }
+        setLocation (world.player.getX(), world.player.getY());
+    }
+    
+    public void setIsBeingHeld(boolean isBeingHeld) {
+        this.isBeingHeld = isBeingHeld;
+    }
+    
+    public boolean getIsBeingHeld() {
+        return isBeingHeld;
     }
 }

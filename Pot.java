@@ -8,12 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Pot extends HoldableObject
 {
-    /**
-     * Act - do whatever the Pot wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private GreenfootImage[] tomatoSoup = new GreenfootImage[3];
+    private GreenfootImage[] mushroomSoup = new GreenfootImage[3];
+    private GreenfootImage[] onionSoup = new GreenfootImage[3];
+    
+    public Pot() {
+        for (int i=0; i<3; i++) {
+            tomatoSoup[i] = new GreenfootImage ("images/tomatoSoup/tomatoSoup" + i + ".PNG");
+        }
+        for (int i=0; i<3; i++) {
+            mushroomSoup[i] = new GreenfootImage ("images/mushroomSoup/mushroomSoup" + i + ".PNG");
+        }
+        for (int i=0; i<3; i++) {
+            onionSoup[i] = new GreenfootImage ("images/onionSoup/onionSoup" + i + ".PNG");
+        }
+    }
+
     public void act()
     {
         // Add your action code here.
+        super.act();
     }
 }

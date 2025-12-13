@@ -15,5 +15,6 @@ public class Plate extends HoldableObject
     public void act()
     {
         // Add your action code here.
+        super.act();
     }
 }

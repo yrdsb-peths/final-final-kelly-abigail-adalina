@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Counter extends Actor
 {
-    public boolean checkIfSelected = false;
+    private HoldableObject objectOnTop = null;
+    public boolean isSelected = false;
     public Counter(){
     }
     
@@ -20,40 +21,30 @@ public class Counter extends Actor
     {
     }
     
-    /*
-     * public void checkIfSelected(GreenfootImage selectedImageVersion, GreenfootImage normalImage){
-        MyWorld world = (MyWorld) getWorld();
-        setImage (normalImage);
-        if (world.playerImage.getFacingDirection().equals ("front")) {
-            if (getOneObjectAtOffset (0, -40, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-            }
-        } else if (world.playerImage.getFacingDirection().equals ("left")) {
-            if (getOneObjectAtOffset (-40, 0, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-            }
-        } else if (world.playerImage.getFacingDirection().equals ("right")) {
-            if (getOneObjectAtOffset (40, 0, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-            }
-        } else if (world.playerImage.getFacingDirection().equals ("back")) {
-            if (getOneObjectAtOffset (0, 40, PlayerController.class) != null) {
-                setImage (selectedImageVersion);
-            }
-        } 
-    }
-     */
-    
+    //a super class for its subclasses
+    //when is being selected change image to the first parameter
     public void checkIfSelected (GreenfootImage selectedImage, GreenfootImage normalImage){
         MyWorld world = (MyWorld)getWorld();
         Counter selected = world.player.getSelectedCounter();
     
         if (this == selected){
             setImage(selectedImage);
-            checkIfSelected = true;
+            isSelected = true;
         } else {
             setImage(normalImage);
-            checkIfSelected = false;
+            isSelected = false;
         }
+    }
+    
+    public HoldableObject getIntersectingHoldableObject() {
+        return (HoldableObject)getOneIntersectingObject (HoldableObject.class);
+    }
+    
+    public void setObjectOnTop(HoldableObject object) {
+        objectOnTop = object;
+    }
+    
+    public HoldableObject getObjectOnTop() {
+        return objectOnTop;
     }
 }

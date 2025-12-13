@@ -9,10 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CuttingCounter extends Counter
 {
     private GreenfootImage cuttingCounter = new GreenfootImage ("images/cuttingCounter.PNG");
+    private GreenfootImage selectedCuttingCounter = new GreenfootImage ("images/selectedCuttingCounter.PNG");
+    
     int width = 60;
     
     public CuttingCounter() {
         cuttingCounter.scale(width, width);
+        selectedCuttingCounter.scale(width, width);
         setImage (cuttingCounter);
     }
     
@@ -22,6 +25,10 @@ public class CuttingCounter extends Counter
      */
     public void act()
     {
-        // Add your action code here.
+        checkIfSelected(selectedCuttingCounter, cuttingCounter);
+        
+        // if hes pressing on d cut the food
+        
+            
     }
 }

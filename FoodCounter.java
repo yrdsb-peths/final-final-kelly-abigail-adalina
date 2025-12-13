@@ -53,4 +53,8 @@ public class FoodCounter extends Counter
             checkIfSelected (selectedOnionCounter, onionCounter);
         }
     }
+    
+    public String getType() {
+        return type;
+    }
 }

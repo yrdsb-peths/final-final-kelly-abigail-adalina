@@ -13,6 +13,8 @@ public class PlayerController extends SuperSmoothMover
     //variables
     private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
     int width = 60;
+    boolean isHoldingObject = false;
+    private HoldableObject holdingObject = null;
     
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
@@ -26,7 +28,7 @@ public class PlayerController extends SuperSmoothMover
     {
         controlPlayer();
     }
-    
+
     /**
      * use arrows to move the player
      * "a" to get or place down holdable objects
@@ -39,11 +41,13 @@ public class PlayerController extends SuperSmoothMover
         if (Greenfoot.isKeyDown("right")) newX += SPEED;
         if (Greenfoot.isKeyDown("up"))    newY -= SPEED;
         if (Greenfoot.isKeyDown("down"))  newY += SPEED;
-    
         // Check BEFORE moving
         if (!willCollide(newX, newY)) {
             setLocation(newX, newY);
         }
+        
+        if ("a".equals(Greenfoot.getKey())) holdOrPlaceDownHoldableObject();
+        
     }
 
     private boolean willCollide(int nextX, int nextY) {
@@ -108,5 +112,72 @@ public class PlayerController extends SuperSmoothMover
         else if (dir.equals("right") ) best = (Counter)getOneObjectAtOffset (55, 0, Counter.class);
     
         return best;
+    }
+    
+    /*
+     * if the player is holding an object, place it down
+     * if the player is not holding an object, take or generate one
+     */
+    public void holdOrPlaceDownHoldableObject() {
+        Counter selectedCounter = getSelectedCounter();
+        
+        //if there is no nearby Counter, do nothing
+        if (selectedCounter != null) {
+            HoldableObject selectedObject = selectedCounter.getObjectOnTop();
+            if (isHoldingObject) {
+                
+                /*
+                 * place down object if:
+                 * 1. player is holding an object
+                 * 2. there is a selected Counter
+                 * 3. there is no object on top of the selected Counter
+                 */
+                if (selectedObject == null){
+                    holdingObject.setLocation (selectedCounter.getX(), selectedCounter.getY());
+                    selectedCounter.setObjectOnTop (holdingObject);
+                    holdingObject.setIsBeingHeld(false);
+                    holdingObject = null;
+                    isHoldingObject = false;
+                }
+                
+            } else {
+                
+                /*
+                 * take object up if
+                 * 1. player is not holding an object
+                 * 2. there is an object on the nearby Counter
+                 */
+                if (selectedObject != null){
+                    
+                    selectedObject.setIsBeingHeld(true);
+                    holdingObject = selectedObject;
+                    isHoldingObject = true;
+                    selectedCounter.setObjectOnTop(null);
+                    
+                    /*
+                     * if no object on the nearby Counter, check if it is a food counter
+                     * if it is, generate a new food according to counter type
+                     */
+                } else if (selectedCounter instanceof FoodCounter) {
+                    MyWorld w = (MyWorld) getWorld();
+                    FoodCounter selectedFoodCounter = (FoodCounter)selectedCounter;
+                    
+                    if (selectedFoodCounter.getType().equals("onion") ) {
+                        holdingObject = w.generateOnion();
+                    } else if (selectedFoodCounter.getType().equals("tomato") ) {
+                        holdingObject = w.generateTomato();
+                    } else if (selectedFoodCounter.getType().equals("mushroom") ) {
+                        holdingObject = w.generateMushroom();
+                    }
+    
+                    isHoldingObject = true;
+                    selectedCounter.setObjectOnTop(null);
+                }
+            }
+        }
+    }
+    
+    public void setHoldingObject (HoldableObject object) {
+        holdingObject = object;
     }
 }
