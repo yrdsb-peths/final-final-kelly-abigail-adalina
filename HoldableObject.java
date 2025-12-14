@@ -33,4 +33,8 @@ public class HoldableObject extends Actor
     public boolean getIsBeingHeld() {
         return isBeingHeld;
     }
+    
+    public String getClassType(String classType) {
+        return classType;
+    }
 }

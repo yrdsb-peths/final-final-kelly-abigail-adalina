@@ -169,7 +169,6 @@ public class PlayerController extends SuperSmoothMover
                     } else if (selectedFoodCounter.getType().equals("mushroom") ) {
                         holdingObject = w.generateMushroom();
                     }
-    
                     isHoldingObject = true;
                     selectedCounter.setObjectOnTop(null);
                 }
