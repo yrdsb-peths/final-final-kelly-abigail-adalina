@@ -17,7 +17,6 @@ public class Tomato extends HoldableObject
         tomato.scale(width, width);
         choppedTomato.scale(width2, width2);
         setImage (tomato);
-        getClassType("Tomato");
     }
     /**
      * Act - do whatever the Tomato wants to do. This method is called whenever

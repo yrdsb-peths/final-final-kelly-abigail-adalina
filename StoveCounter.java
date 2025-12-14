@@ -49,8 +49,12 @@ public class StoveCounter extends Counter
             
         if(!hasFoodOnTop && top != null)
         {
-            addFood(top);
+            HoldableObject food = (HoldableObject) top;
+            
+            if(!food.getIsBeingHeld() && !hasFoodOnTop){
+            addFood(food);
             hasFoodOnTop = true;
+            }
         }
         
         if(top == null)
@@ -66,24 +70,24 @@ public class StoveCounter extends Counter
         // add pot at the stove's position
         w.addObject(pot, getX(), getY()-offset);
     }
-    private void addFood(Actor top)
+    private void addFood(HoldableObject food)
     {
-        getWorld().removeObject(top);
+        getWorld().removeObject(food);
         //Decide soup type of first ingerident
         if(soupType.equals(""))
         {
-            if(top instanceof Tomato){
+            if(food instanceof Tomato){
                 soupType = "tomato";
-            } else if(top instanceof Mushroom){
+            } else if(food instanceof Mushroom){
                 soupType = "mushroom";
-            } else if(top instanceof Onion){
+            } else if(food instanceof Onion){
                 soupType = "onion";
             }else{
                 return;
             }
         }
         //Prevents mixing of ingreident
-        if(!isCorrectIngredient(top)){
+        if(!isCorrectIngredient(food)){
             return;
         }
         

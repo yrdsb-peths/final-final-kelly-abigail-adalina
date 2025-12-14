@@ -133,7 +133,7 @@ public class PlayerController extends SuperSmoothMover
                  * 3. there is no object on top of the selected Counter
                  */
                 if (selectedObject == null){
-                    holdingObject.setLocation (selectedCounter.getX(), selectedCounter.getY());
+                    holdingObject.setLocation(selectedCounter.getX(),selectedCounter.getY() - 15);
                     selectedCounter.setObjectOnTop (holdingObject);
                     holdingObject.setIsBeingHeld(false);
                     holdingObject = null;
