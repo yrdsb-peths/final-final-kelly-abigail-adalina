@@ -10,19 +10,16 @@ public class PlayerController extends SuperSmoothMover
 {
     //constant
     private static final int SPEED = 20;
+    private static final GreenfootImage CONTROLLER = new GreenfootImage ("images/emptyController.PNG");
+    private static final int WIDTH = 60;
     //variables
-    private GreenfootImage controller = new GreenfootImage ("images/emptyController.PNG");
-    int width = 60;
+    
     boolean isHoldingObject = false;
     private HoldableObject holdingObject = null;
     
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public PlayerController () {
-        controller.scale(width,width);
-        setImage (controller);
+        CONTROLLER.scale(WIDTH,WIDTH);
+        setImage (CONTROLLER);
     }
     public void act()
     {
@@ -33,7 +30,7 @@ public class PlayerController extends SuperSmoothMover
      * use arrows to move the player
      * "a" to get or place down holdable objects
      */
-    public void controlPlayer() {
+    private void controlPlayer() {
         int newX = getX();
         int newY = getY();
     
@@ -73,7 +70,7 @@ public class PlayerController extends SuperSmoothMover
     }
     
     //check the number of selected counters
-    public int getNumNearbyCounters() {
+    private int getNumNearbyCounters() {
         boolean up    = getOneObjectAtOffset(0, -55, Counter.class) != null;
         boolean down  = getOneObjectAtOffset(0,  55, Counter.class) != null;
         boolean left  = getOneObjectAtOffset(-55, 0, Counter.class) != null;
@@ -125,7 +122,7 @@ public class PlayerController extends SuperSmoothMover
      * if the player is holding an object, place it down
      * if the player is not holding an object, take or generate one
      */
-    public void holdOrPlaceDownHoldableObject() {
+    private void holdOrPlaceDownHoldableObject() {
         Counter selectedCounter = getSelectedCounter();
         
         //if there is no nearby Counter, do nothing
