@@ -11,20 +11,28 @@ public class Pot extends HoldableObject
     public GreenfootImage[] tomatoSoup = new GreenfootImage[3];
     public GreenfootImage[] mushroomSoup = new GreenfootImage[3];
     public GreenfootImage[] onionSoup = new GreenfootImage[3];
+    private GreenfootImage emptyPot = new GreenfootImage("images/emptyPot.PNG");
+    
+    int width = 60;
+    int height = 105;
     
     private int numFoodInside;
     private String type;
     
     public Pot() {
+        emptyPot.scale(width, width);
         numFoodInside = 0;
         for (int i=0; i<3; i++) {
             tomatoSoup[i] = new GreenfootImage ("images/tomatoSoup/tomatoSoup" + i + ".PNG");
+            tomatoSoup[i].scale(width, height);
         }
         for (int i=0; i<3; i++) {
             mushroomSoup[i] = new GreenfootImage ("images/mushroomSoup/mushroomSoup" + i + ".PNG");
+            mushroomSoup[i].scale(width, height);
         }
         for (int i=0; i<3; i++) {
             onionSoup[i] = new GreenfootImage ("images/onionSoup/onionSoup" + i + ".PNG");
+            onionSoup[i].scale(width, height);
         }
     }
 

@@ -17,10 +17,7 @@ public class NormalCounter extends Counter
         selectedNormalCounter.scale(width, width);
         setImage (normalCounter);
     }
-    /**
-     * Act - do whatever the normalCounter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         // check if being selected, if so, change image to selectedNormalCounter

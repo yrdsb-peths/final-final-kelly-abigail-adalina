@@ -16,10 +16,7 @@ public class DeliveryCounter extends Counter
         deliveryCounter.scale (width, width);
         selectedDeliveryCounter.scale (width, width);
     }
-    /**
-     * Act - do whatever the DeliveryCounter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         // Add your action code here.

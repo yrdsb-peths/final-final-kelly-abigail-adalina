@@ -19,16 +19,9 @@ public class CuttingCounter extends Counter
         setImage (cuttingCounter);
     }
     
-    /**
-     * Act - do whatever the cuttingCounter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         checkIfSelected(selectedCuttingCounter, cuttingCounter);
-        
-        // if hes pressing on d cut the food
-        
-            
+           
     }
 }
