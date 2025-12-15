@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Mushroom extends HoldableObject
+public class Mushroom extends Food
 {
     private GreenfootImage mushroom = new GreenfootImage ("images/mushroom.PNG");
     private GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
@@ -17,6 +17,8 @@ public class Mushroom extends HoldableObject
         mushroom.scale(width, width);
         choppedMushroom.scale(width2, width2);
         setImage (mushroom);
+        
+        this.setType("mushroom");
     }
     /**
      * Act - do whatever the Mushroom wants to do. This method is called whenever

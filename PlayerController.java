@@ -46,7 +46,10 @@ public class PlayerController extends SuperSmoothMover
             setLocation(newX, newY);
         }
         
-        if ("a".equals(Greenfoot.getKey())) holdOrPlaceDownHoldableObject();
+        if ("a".equals(Greenfoot.getKey())){
+            holdOrPlaceDownHoldableObject();
+            checkIfAddFoodToPot();
+        }
         
     }
 
@@ -176,7 +179,122 @@ public class PlayerController extends SuperSmoothMover
         }
     }
     
+    private void checkIfAddFoodToPot() {
+        //do nothing is player is not holding anything
+        if (!isHoldingObject || holdingObject == null) return;
+    
+        // Only food can go into pots
+        if (!(holdingObject instanceof Food)) {
+            return;
+        }
+        
+        //do nothing is no counter nearby
+        Counter selectedCounter = getSelectedCounter();
+        if (selectedCounter == null) return;
+    
+        //food can only be placed inside pot
+        HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
+        if (!(objectOnCounter instanceof Pot)) return;
+    
+        Pot selectedPot = (Pot) objectOnCounter;
+        
+        if (selectedPot.getNumFoodInside() == 0) {
+            changeToOneFoodSoup();
+            
+        } else if (selectedPot.getNumFoodInside() == 1) {
+            changeToTwoFoodSoup();
+            
+        } else if (selectedPot.getNumFoodInside() == 2) {
+            changeToThreeFoodSoup();
+            
+        }
+
+    }
+    
+    private void removeHoldingObject() {
+        MyWorld w = (MyWorld) getWorld();
+        w.removeObject(holdingObject);
+        holdingObject = null;
+        isHoldingObject = false;
+    }
+    
+    private void changeToOneFoodSoup() {
+        Counter selectedCounter = getSelectedCounter();
+        HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
+        Pot selectedPot = (Pot) objectOnCounter;
+        
+        if (holdingObject instanceof Mushroom) {
+            selectedPot.setType ("mushroom");
+            selectedPot.setImage (selectedPot.mushroomSoup[0]);
+            selectedPot.setNumFoodInside(1);
+            
+        } else if (holdingObject instanceof Onion) {
+            selectedPot.setType ("onion");
+            selectedPot.setImage (selectedPot.onionSoup[0]);
+            selectedPot.setNumFoodInside(1);
+            
+        } else if (holdingObject instanceof Tomato) {
+            selectedPot.setType ("tomato");
+            selectedPot.setImage (selectedPot.tomatoSoup[0]);
+            selectedPot.setNumFoodInside(1);
+            
+        }
+        
+        removeHoldingObject();
+    }
+    
+    private void changeToTwoFoodSoup() {
+        Counter selectedCounter = getSelectedCounter();
+        HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
+        Pot selectedPot = (Pot) objectOnCounter;
+        Food holdingFood = (Food) holdingObject;
+        
+        if ( !holdingFood.getType().equals(selectedPot.getType()) ) return;
+        
+        if (holdingObject instanceof Mushroom) {
+            selectedPot.setImage (selectedPot.mushroomSoup[1]);
+            selectedPot.setNumFoodInside(2);
+            
+        } else if (holdingObject instanceof Onion) {
+            selectedPot.setImage (selectedPot.onionSoup[1]);
+            selectedPot.setNumFoodInside(2);
+            
+        } else if (holdingObject instanceof Tomato) {
+            selectedPot.setImage (selectedPot.tomatoSoup[1]);
+            selectedPot.setNumFoodInside(2);
+            
+        }
+        
+        removeHoldingObject();
+    }
+    
+    private void changeToThreeFoodSoup() {
+        Counter selectedCounter = getSelectedCounter();
+        HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
+        Pot selectedPot = (Pot) objectOnCounter;
+        Food holdingFood = (Food) holdingObject;
+        
+        if ( !holdingFood.getType().equals(selectedPot.getType()) ) return;
+        
+        if (holdingObject instanceof Mushroom) {
+            selectedPot.setImage (selectedPot.mushroomSoup[2]);
+            selectedPot.setNumFoodInside(3);
+            
+        } else if (holdingObject instanceof Onion) {
+            selectedPot.setImage (selectedPot.onionSoup[2]);
+            selectedPot.setNumFoodInside(3);
+            
+        } else if (holdingObject instanceof Tomato) {
+            selectedPot.setImage (selectedPot.tomatoSoup[2]);
+            selectedPot.setNumFoodInside(3);
+            
+        }
+        
+        removeHoldingObject();
+    }
+    
     public void setHoldingObject (HoldableObject object) {
         holdingObject = object;
     }
+    
 }

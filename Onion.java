@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Onion extends HoldableObject
+public class Onion extends Food
 {
     private GreenfootImage onion = new GreenfootImage("images/onion.PNG");
     private GreenfootImage choppedOnion = new GreenfootImage ("images/choppedOnion.PNG");
@@ -17,6 +17,8 @@ public class Onion extends HoldableObject
         onion.scale(width, width);
         choppedOnion.scale(width2, width2);
         setImage (onion);
+        
+        this.setType("onion");
     }
     /**
      * Act - do whatever the Onion wants to do. This method is called whenever

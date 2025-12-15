@@ -8,11 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Pot extends HoldableObject
 {
-    private GreenfootImage[] tomatoSoup = new GreenfootImage[3];
-    private GreenfootImage[] mushroomSoup = new GreenfootImage[3];
-    private GreenfootImage[] onionSoup = new GreenfootImage[3];
+    public GreenfootImage[] tomatoSoup = new GreenfootImage[3];
+    public GreenfootImage[] mushroomSoup = new GreenfootImage[3];
+    public GreenfootImage[] onionSoup = new GreenfootImage[3];
+    
+    private int numFoodInside;
+    private String type;
     
     public Pot() {
+        numFoodInside = 0;
         for (int i=0; i<3; i++) {
             tomatoSoup[i] = new GreenfootImage ("images/tomatoSoup/tomatoSoup" + i + ".PNG");
         }
@@ -28,5 +32,21 @@ public class Pot extends HoldableObject
     {
         // Add your action code here.
         super.act();
+    }
+    
+    public void setNumFoodInside(int num) {
+        numFoodInside = num;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public int getNumFoodInside() {
+        return numFoodInside;
     }
 }
