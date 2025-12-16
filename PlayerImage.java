@@ -22,12 +22,18 @@ public class PlayerImage extends Actor
     private int offSet = 20;
     private int width = 85;
     private int height = 135;
+    private int animationGap = 100;
+    
+    SimpleTimer animationTimer = new SimpleTimer();
+    int imageIndex = 0;
     
     public PlayerImage() {
         rescaleAndSetImages (width, height);
         facingDirection = "front";
         
         setImage(FRONT);
+        animationTimer.mark();
+        
     }
     /**
      * Act - do whatever the PlayerImage wants to do. This method is called whenever
@@ -38,6 +44,7 @@ public class PlayerImage extends Actor
         // Add your action code here.
         moveWithPlayerController();
         changeDirection();
+        
     }
     
     public void rescaleAndSetImages(int width, int height) {
@@ -80,6 +87,42 @@ public class PlayerImage extends Actor
         } else if (Greenfoot.isKeyDown("down")) {
             facingDirection = "front";
             setImage(FRONT);
+        }
+    }
+    
+    public void evokeChoppingAnimation() {
+        if (facingDirection.equals("front")) {
+            if(animationTimer.millisElapsed() < animationGap) {
+                return;
+            }
+            animationTimer.mark();
+            
+            setImage (choppingPlayerFront[imageIndex]);
+            imageIndex = (imageIndex+1) % 2;
+        } else if (facingDirection.equals("back")) {
+            if(animationTimer.millisElapsed() < animationGap) {
+                return;
+            }
+            animationTimer.mark();
+            
+            setImage (choppingPlayerBack[imageIndex]);
+            imageIndex = (imageIndex+1) % 2;
+        } else if (facingDirection.equals("left")) {
+            if(animationTimer.millisElapsed() < animationGap) {
+                return;
+            }
+            animationTimer.mark();
+            
+            setImage (choppingPlayerLeft[imageIndex]);
+            imageIndex = (imageIndex+1) % 2;
+        } else if (facingDirection.equals("right")) {
+            if(animationTimer.millisElapsed() < animationGap) {
+                return;
+            }
+            animationTimer.mark();
+            
+            setImage (choppingPlayerRight[imageIndex]);
+            imageIndex = (imageIndex+1) % 2;
         }
     }
     

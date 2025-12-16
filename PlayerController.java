@@ -51,11 +51,10 @@ public class PlayerController extends SuperSmoothMover
             checkIfAddFoodToPot();
         }
         
-        if (Greenfoot.isKeyDown("w")) chop();
-    }
-    
-    private void chop() {
-        
+        MyWorld w = (MyWorld) getWorld();
+        if (Greenfoot.isKeyDown("w")) {
+            if (choppingConditionSatisfied()) w.playerImage.evokeChoppingAnimation();
+        }
     }
     
     private boolean willCollide(int nextX, int nextY) {
@@ -113,13 +112,16 @@ public class PlayerController extends SuperSmoothMover
         }
     
         // 2. If multiple → pick the one in front
-        Counter best = null;
-        if (dir.equals("front") ) best = (Counter)getOneObjectAtOffset (0, 55, Counter.class);
-        else if (dir.equals("back") ) best = (Counter)getOneObjectAtOffset (0, -55, Counter.class);
-        else if (dir.equals("left") ) best = (Counter)getOneObjectAtOffset (-55, 0, Counter.class);
-        else if (dir.equals("right") ) best = (Counter)getOneObjectAtOffset (55, 0, Counter.class);
+        return getCounterInFront(dir);
+    }
     
-        return best;
+    public Counter getCounterInFront(String dir) {
+        if (dir.equals("front") ) return (Counter)getOneObjectAtOffset (0, 55, Counter.class);
+        else if (dir.equals("back") ) return (Counter)getOneObjectAtOffset (0, -55, Counter.class);
+        else if (dir.equals("left") ) return (Counter)getOneObjectAtOffset (-55, 0, Counter.class);
+        else if (dir.equals("right") ) return (Counter)getOneObjectAtOffset (55, 0, Counter.class);
+        
+        return null;
     }
     
     /*
@@ -300,6 +302,20 @@ public class PlayerController extends SuperSmoothMover
     
     public void setHoldingObject (HoldableObject object) {
         holdingObject = object;
+    }
+    
+    public boolean choppingConditionSatisfied() {
+        MyWorld w = (MyWorld)getWorld();
+        String dir = w.playerImage.getFacingDirection();
+        Counter counterInFront = getCounterInFront(dir);
+        
+        if ( !(counterInFront instanceof CuttingCounter))return false;
+        
+        if (isHoldingObject) return false;
+        
+        if ( !(counterInFront.getObjectOnTop() instanceof Food)) return false;
+        
+        return true;
     }
     
 }
