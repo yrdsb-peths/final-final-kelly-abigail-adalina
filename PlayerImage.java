@@ -12,7 +12,10 @@ public class PlayerImage extends Actor
     private static final GreenfootImage BACK = new GreenfootImage ("images/playerBlueBack.PNG");
     private static final GreenfootImage LEFT = new GreenfootImage ("images/playerBlueFacingLeft.PNG");
     private static final GreenfootImage RIGHT = new GreenfootImage ("images/playerBlueFacingRight.PNG");
-    private GreenfootImage[] choppingPlayer = new GreenfootImage[2];
+    private GreenfootImage[] choppingPlayerFront = new GreenfootImage[2];
+    private GreenfootImage[] choppingPlayerBack = new GreenfootImage[2];
+    private GreenfootImage[] choppingPlayerLeft = new GreenfootImage[2];
+    private GreenfootImage[] choppingPlayerRight = new GreenfootImage[2];
     
     private String facingDirection;
     //image offset in the y direction in relation to the invisible player controller
@@ -21,12 +24,9 @@ public class PlayerImage extends Actor
     private int height = 135;
     
     public PlayerImage() {
-        rescaleImages (width, height);
+        rescaleAndSetImages (width, height);
         facingDirection = "front";
-        for (int i=0; i<2; i++) {
-            choppingPlayer[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
-            choppingPlayer[i].scale(width, height);
-        }
+        
         setImage(FRONT);
     }
     /**
@@ -40,11 +40,28 @@ public class PlayerImage extends Actor
         changeDirection();
     }
     
-    public void rescaleImages(int width, int height) {
+    public void rescaleAndSetImages(int width, int height) {
         FRONT.scale (width, height);
         BACK.scale (width, height);
         LEFT.scale (width, height);
         RIGHT.scale (width, height);
+        
+        for (int i=0; i<2; i++) {
+            choppingPlayerFront[i] = new GreenfootImage ("images/playerChoppingFront/playerBlueChoppingFront" + i + ".PNG");
+            choppingPlayerFront[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerBack[i] = new GreenfootImage ("images/playerChoppingBack/playerBlueChoppingBack" + i + ".PNG");
+            choppingPlayerBack[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerLeft[i] = new GreenfootImage ("images/playerChoppingLeft/playerBlueChoppingLeft" + i + ".PNG");
+            choppingPlayerLeft[i].scale(width, height);
+        }
+        for (int i=0; i<2; i++) {
+            choppingPlayerRight[i] = new GreenfootImage ("images/playerChoppingRight/playerBlueChoppingRight" + i + ".PNG");
+            choppingPlayerRight[i].scale(width, height);
+        }
     }
     
     /**
