@@ -10,6 +10,8 @@ public class MyWorld extends World {
     
     public Order[] soupOrders = new Order[5];
     
+    public SimpleTimer newOrderTimer = new SimpleTimer();
+    
 
     public MyWorld()
     {    
@@ -25,6 +27,37 @@ public class MyWorld extends World {
         prepare();
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
+        
+        soupOrders[0] = new Order();
+        addObject(soupOrders[0],20+unitWidth, 90/2);
+        newOrderTimer.mark();
+    }
+    public void act() {
+        generateNewOrder();
+    }
+    
+    private int getFirstEmptyOrderSlot() {
+        for (int i = 0; i < soupOrders.length; i++) {
+            if (soupOrders[i] == null) {
+                return i;
+            }
+        }
+        return -1; // no empty slot
+    }
+    
+    private void generateNewOrder() {
+        // Check if enough time has passed
+        if (newOrderTimer.millisElapsed() < 200) return;
+    
+        int index = getFirstEmptyOrderSlot();
+        if (index == -1) return; // order list full
+    
+        Order order = new Order();
+        addObject(order, 20+unitWidth + index * 2 * unitWidth, 90/2);
+    
+        soupOrders[index] = order;
+        newOrderTimer.mark();
+        
     }
     
     /**
