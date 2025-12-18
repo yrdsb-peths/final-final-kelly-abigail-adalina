@@ -14,7 +14,7 @@ public class Order extends Actor
     private int width = 120;
     private int height = 90;
     
-    private int orderTime = 3000;
+    private int orderTime = 3000; //30 seconds
     private SimpleTimer orderTimer = new SimpleTimer();
     
     public Order() {

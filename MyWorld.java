@@ -21,7 +21,7 @@ public class MyWorld extends World {
         background.scale (1000, 600);
         setBackground (background);
         
-        setPaintOrder(HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
+        setPaintOrder(SuperStatBar.class, HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
         
         //set up counter positions and player
         prepare();

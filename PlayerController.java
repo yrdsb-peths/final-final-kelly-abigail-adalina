@@ -53,7 +53,11 @@ public class PlayerController extends SuperSmoothMover
         
         MyWorld w = (MyWorld) getWorld();
         if (Greenfoot.isKeyDown("w")) {
-            if (choppingConditionSatisfied()) w.playerImage.evokeChoppingAnimation();
+            if (choppingConditionSatisfied()){
+                w.playerImage.evokeChoppingAnimation();
+                Food cuttingFood = (Food)getSelectedCounter().getObjectOnTop();
+                cuttingFood.increaseCurrentCuttingTime();
+            }
         }
     }
     
