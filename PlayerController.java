@@ -47,16 +47,30 @@ public class PlayerController extends SuperSmoothMover
         if ("a".equals(Greenfoot.getKey())) {
             holdOrPlaceDownHoldableObject();
             checkIfAddFoodToPot();
+            checkIfServeFoodToPlate();
         }
         
         MyWorld w = (MyWorld) getWorld();
         if (Greenfoot.isKeyDown("w")) {
-            if (choppingConditionSatisfied()) w.playerImage.evokeChoppingAnimation();
+            if (choppingConditionSatisfied()){
+                w.playerImage.evokeChoppingAnimation();
+                Food cuttingFood = (Food)getSelectedCounter().getObjectOnTop();
+                cuttingFood.increaseCurrentCuttingTime();
+                if (cuttingFood.hasFinishedChopping()) updateFoodToChoppedVersion();
+            }
         }
     }
+    
+    /**
+     * serves food to plate if possible
+     */
+    private void checkIfServeFoodToPlate() {
+        
+    }
+    
     /**
      * returns if player will collide with a counter object
-     */    
+     */ 
     private boolean willCollide(int nextX, int nextY) {
 
         // Temporarily move to next position
@@ -201,9 +215,11 @@ public class PlayerController extends SuperSmoothMover
         if (!isHoldingObject || holdingObject == null) return;
     
         // Only food can go into pots
-        if (!(holdingObject instanceof Food)) {
-            return;
-        }
+        if (!(holdingObject instanceof Food)) return;
+        
+        // only chopped food can go into pots
+        Food holdingFood = (Food) holdingObject;
+        if(! holdingFood.hasBeenChopped()) return;
         
         //do nothing is no counter nearby
         Counter selectedCounter = getSelectedCounter();
@@ -340,7 +356,30 @@ public class PlayerController extends SuperSmoothMover
         
         if ( !(counterInFront.getObjectOnTop() instanceof Food)) return false;
         
+        Food foodOnTop = (Food) counterInFront.getObjectOnTop();
+        if (foodOnTop.hasBeenChopped()) return false;
+        
         return true;
+    }
+    
+    private void updateFoodToChoppedVersion() {
+        MyWorld w = (MyWorld)getWorld();
+        String dir = w.playerImage.getFacingDirection();
+        Counter counterInFront = getCounterInFront(dir);
+        Food foodOnTop = (Food) counterInFront.getObjectOnTop();
+        
+        foodOnTop.setHasBeenChopped(true);
+        
+        if (foodOnTop.getType().equals("mushroom")) {
+            Mushroom mushroom = (Mushroom) foodOnTop;
+            mushroom.setImage(mushroom.choppedMushroom);
+        } else if (foodOnTop.getType().equals("onion")) {
+            Onion onion = (Onion) foodOnTop;
+            onion.setImage(onion.choppedOnion);
+        } else if (foodOnTop.getType().equals("tomato")) {
+            Tomato tomato = (Tomato) foodOnTop;
+            tomato.setImage(tomato.choppedTomato);
+        }
     }
     
 }

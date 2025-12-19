@@ -8,6 +8,11 @@ public class MyWorld extends World {
     public PlayerController player = new PlayerController();
     public PlayerImage playerImage = new PlayerImage();
     
+    public Order[] soupOrders = new Order[5];
+    
+    public SimpleTimer newOrderTimer = new SimpleTimer();
+    private int newOrderTime = 10000; //20 seconds 
+    
 
     public MyWorld()
     {    
@@ -17,12 +22,46 @@ public class MyWorld extends World {
         background.scale (1000, 600);
         setBackground (background);
         
-        setPaintOrder(HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
+        setPaintOrder(SuperStatBar.class, HoldableObject.class, PlayerImage.class, PlayerController.class, Counter.class);
         
         //set up counter positions and player
         prepare();
         addObject(player,836,494);
         addObject (playerImage, 0, 0);
+        
+        soupOrders[0] = new Order();
+        addObject(soupOrders[0],20+unitWidth, 90/2);
+        newOrderTimer.mark();
+    }
+    public void act() {
+        generateNewOrder();
+    }
+    
+    private int getFirstEmptyOrderSlot() {
+        for (int i = 0; i < soupOrders.length; i++) {
+            if (soupOrders[i] == null) {
+                return i;
+            }
+        }
+        return -1; // no empty slot
+    }
+    
+    /**
+     * generates new order when there is an open slot
+     */
+    private void generateNewOrder() {
+        // Check if enough time has passed
+        if (newOrderTimer.millisElapsed() < newOrderTime) return;
+    
+        int index = getFirstEmptyOrderSlot();
+        if (index == -1) return; // order list full
+    
+        Order order = new Order();
+        addObject(order, 20+unitWidth + index * 2 * unitWidth, 90/2);
+    
+        soupOrders[index] = order;
+        newOrderTimer.mark();
+        
     }
     
     /**
@@ -64,6 +103,9 @@ public class MyWorld extends World {
             counter8[i] = new NormalCounter();
             addObject(counter8[i],20+(11+i)*unitWidth + counterOffset,2*unitWidth+counterOffset);
         }
+        Plate plate1 = new Plate();
+        addObject(plate1, 20+12*unitWidth + counterOffset, 2*unitWidth+counterOffset);
+        counter8[1].setObjectOnTop (plate1);
         
         // left column of counters
         NormalCounter[] counter9 = new NormalCounter[3];

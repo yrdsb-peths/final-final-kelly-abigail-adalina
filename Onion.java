@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Onion extends Food
 {
     private GreenfootImage onion = new GreenfootImage("images/onion.PNG");
-    private GreenfootImage choppedOnion = new GreenfootImage ("images/choppedOnion.PNG");
+    public GreenfootImage choppedOnion = new GreenfootImage ("images/choppedOnion.PNG");
     int width = 80;
     int width2 = 60;
     
@@ -19,11 +19,12 @@ public class Onion extends Food
         setImage (onion);
         
         this.setType("onion");
+        cuttingTimer.mark();
+        cuttingStatusBar = new SuperStatBar(300, 0, this, 50, 10, 22, green, grey, true);
+        cuttingStatusBar.setToInvisible();
+        
     }
-    /**
-     * Act - do whatever the Onion wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         // Add your action code here.

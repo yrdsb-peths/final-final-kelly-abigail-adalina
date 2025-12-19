@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Mushroom extends Food
 {
     private GreenfootImage mushroom = new GreenfootImage ("images/mushroom.PNG");
-    private GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
+    public GreenfootImage choppedMushroom = new GreenfootImage ("images/choppedMushroom.PNG");
     int width = 80;
     int width2 = 60;
     
@@ -19,14 +19,16 @@ public class Mushroom extends Food
         setImage (mushroom);
         
         this.setType("mushroom");
+        cuttingTimer.mark();
+        cuttingStatusBar = new SuperStatBar(300, 0, this, 50, 10, 22, green, grey, true);
+        cuttingStatusBar.setToInvisible();
+        
     }
-    /**
-     * Act - do whatever the Mushroom wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act()
     {
         // Add your action code here.
         super.act();
     }
+
 }
