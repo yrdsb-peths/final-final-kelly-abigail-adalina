@@ -32,6 +32,7 @@ public class PlayerController extends SuperSmoothMover
     /**
      * use arrows to move the player
      * "a" to get or place down holdable objects
+     * "w" to chop
      */
     public void controlPlayer() {
         int newX = getX();
@@ -49,6 +50,7 @@ public class PlayerController extends SuperSmoothMover
         if ("a".equals(Greenfoot.getKey())) {
             holdOrPlaceDownHoldableObject();
             checkIfAddFoodToPot();
+            checkIfServeFoodToPlate();
         }
         
         MyWorld w = (MyWorld) getWorld();
@@ -60,6 +62,13 @@ public class PlayerController extends SuperSmoothMover
                 if (cuttingFood.hasFinishedChopping()) updateFoodToChoppedVersion();
             }
         }
+    }
+    
+    /**
+     * serves food to plate if possible
+     */
+    private void checkIfServeFoodToPlate() {
+        
     }
     
     private boolean willCollide(int nextX, int nextY) {
