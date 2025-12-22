@@ -19,6 +19,16 @@ public class Pot extends HoldableObject
     private int numFoodInside;
     private String type;
     
+    private int requiredCookingTime = 0;
+    private int currentCookingTime = 0;
+    
+    private SimpleTimer cookingTimer = new SimpleTimer();
+    public SuperStatBar cookingStatusBar;
+    private Color green = new Color (56, 255, 119);
+    private Color grey = new Color (112, 112, 112);
+    
+    private boolean finishedCooking = false;
+    
     public Pot() {
         emptyPot.scale(width, width);
         numFoodInside = 0;
@@ -34,12 +44,50 @@ public class Pot extends HoldableObject
             onionSoup[i] = new GreenfootImage ("images/onionSoup/onionSoup" + i + ".PNG");
             onionSoup[i].scale(width, height);
         }
+        
+        cookingTimer.mark();
+        cookingStatusBar = new SuperStatBar(requiredCookingTime, currentCookingTime, this, 50, 10, 22, green, grey, true);
+        cookingStatusBar.setToInvisible();
+        
     }
 
     public void act()
     {
         // Add your action code here.
         super.act();
+        if(getOneObjectAtOffset(0, 0, Counter.class) instanceof StoveCounter) {
+            increaseCurrentCuttingTime();
+        }
+    }
+    
+    protected void addedToWorld(World w) {
+        w.addObject(cookingStatusBar, getX(), getY() + 22);
+    }
+    
+    private void increaseCurrentCuttingTime() {
+        if(cookingTimer.millisElapsed() >= 5 && currentCookingTime < requiredCookingTime)currentCookingTime += 5;
+        else return;
+        cookingTimer.mark();
+        
+        cookingStatusBar.update(currentCookingTime);
+    }
+    
+    public boolean hasFinishedCooking() {
+        return currentCookingTime == requiredCookingTime && numFoodInside == 3;
+    }
+    
+    /**
+     * initialize all variables and timers to an empty pot
+     */
+    public void setToEmptyPotStatus() {
+        requiredCookingTime = 0;
+        currentCookingTime = 0;
+        cookingStatusBar.setMaxVal (0);
+        cookingStatusBar.update(currentCookingTime);
+        numFoodInside = 0;
+        type = null;
+        setImage (emptyPot);
+        cookingTimer.mark();
     }
     
     public void setNumFoodInside(int num) {
@@ -56,5 +104,9 @@ public class Pot extends HoldableObject
     
     public int getNumFoodInside() {
         return numFoodInside;
+    }
+    
+    public void setRequiredCookingTime(int time) {
+        requiredCookingTime = time;
     }
 }

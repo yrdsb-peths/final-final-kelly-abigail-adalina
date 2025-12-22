@@ -17,7 +17,7 @@ public class Order extends Actor
     private int orderTime = 30000; //30 seconds
     private SimpleTimer orderTimer = new SimpleTimer();
     private SuperStatBar countDownBar;
-    Color blue = new Color (0, 227, 216);
+    Color green = new Color (56, 255, 119);
     Color grey = new Color (112, 112, 112);
     Color yellow = new Color (227, 204, 0);
     Color red = new Color (196, 23, 0);
@@ -30,7 +30,7 @@ public class Order extends Actor
         createRandomOrder();
         orderTimer.mark();
         
-        countDownBar = new SuperStatBar(orderTime, orderTime, this, 110, 5, -40, blue, grey);
+        countDownBar = new SuperStatBar(orderTime, orderTime, this, 110, 5, -40, green, grey);
     }
     
     public void act()
@@ -77,7 +77,7 @@ public class Order extends Actor
         } else if (remainingTime < 10000) {
             countDownBar.setColors(yellow, grey);
         } else {
-            countDownBar.setColors(blue, grey);
+            countDownBar.setColors(green, grey);
         }
     }
 }

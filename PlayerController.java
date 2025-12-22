@@ -262,6 +262,9 @@ public class PlayerController extends SuperSmoothMover
         HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
         Pot selectedPot = (Pot) objectOnCounter;
         
+        selectedPot.setRequiredCookingTime (500);
+        selectedPot.cookingStatusBar.setMaxVal(500);
+        
         if (holdingObject instanceof Mushroom) {
             selectedPot.setType ("mushroom");
             selectedPot.setImage (selectedPot.mushroomSoup[0]);
@@ -293,6 +296,9 @@ public class PlayerController extends SuperSmoothMover
         
         if ( !holdingFood.getType().equals(selectedPot.getType()) ) return;
         
+        selectedPot.setRequiredCookingTime (800);
+        selectedPot.cookingStatusBar.setMaxVal(800);
+        
         if (holdingObject instanceof Mushroom) {
             selectedPot.setImage (selectedPot.mushroomSoup[1]);
             selectedPot.setNumFoodInside(2);
@@ -320,6 +326,9 @@ public class PlayerController extends SuperSmoothMover
         Food holdingFood = (Food) holdingObject;
         
         if ( !holdingFood.getType().equals(selectedPot.getType()) ) return;
+        
+        selectedPot.setRequiredCookingTime (1100);
+        selectedPot.cookingStatusBar.setMaxVal(1100);
         
         if (holdingObject instanceof Mushroom) {
             selectedPot.setImage (selectedPot.mushroomSoup[2]);
