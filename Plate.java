@@ -15,6 +15,9 @@ public class Plate extends HoldableObject
     int width = 60;
     int height = 80;
     
+    private boolean isEmpty;
+    private String type;
+    
     public Plate() {
         emptyPlate.scale(width, height);
         tomatoSoupPlate.scale(width, height);
@@ -22,11 +25,36 @@ public class Plate extends HoldableObject
         mushroomSoupPlate.scale(width, height);
         
         setImage(emptyPlate);
+        isEmpty = true;
     }
     
     public void act()
     {
         // Add your action code here.
         super.act();
+    }
+    
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public void setImageToTomatoSoupPlate() {
+        setImage (tomatoSoupPlate);
+    }
+    
+    public void setImageToOnionSoupPlate() {
+        setImage (onionSoupPlate);
+    }
+    
+    public void setImageToMushroomSoupPlate() {
+        setImage (mushroomSoupPlate);
+    }
+    
+    public void setIsEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 }

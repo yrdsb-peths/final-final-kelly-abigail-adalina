@@ -20,7 +20,7 @@ public class Mushroom extends Food
         
         this.setType("mushroom");
         cuttingTimer.mark();
-        cuttingStatusBar = new SuperStatBar(300, 0, this, 50, 10, 22, green, grey, true);
+        cuttingStatusBar = new SuperStatBar(requiredCuttingTime, 0, this, 50, 10, 22, green, grey, true);
         cuttingStatusBar.setToInvisible();
         
     }

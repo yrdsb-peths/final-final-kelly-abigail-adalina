@@ -30,7 +30,7 @@ public class Pot extends HoldableObject
     private boolean finishedCooking = false;
     
     public Pot() {
-        emptyPot.scale(width, width);
+        emptyPot.scale(width, height);
         numFoodInside = 0;
         for (int i=0; i<3; i++) {
             tomatoSoup[i] = new GreenfootImage ("images/tomatoSoup/tomatoSoup" + i + ".PNG");
@@ -49,6 +49,7 @@ public class Pot extends HoldableObject
         cookingStatusBar = new SuperStatBar(requiredCookingTime, currentCookingTime, this, 50, 10, 22, green, grey, true);
         cookingStatusBar.setToInvisible();
         
+        setImage(emptyPot);
     }
 
     public void act()
@@ -82,12 +83,16 @@ public class Pot extends HoldableObject
     public void setToEmptyPotStatus() {
         requiredCookingTime = 0;
         currentCookingTime = 0;
+        
         cookingStatusBar.setMaxVal (0);
         cookingStatusBar.update(currentCookingTime);
+        cookingStatusBar.setToInvisible();
+        
         numFoodInside = 0;
         type = null;
         setImage (emptyPot);
         cookingTimer.mark();
+        
     }
     
     public void setNumFoodInside(int num) {

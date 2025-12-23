@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Food extends HoldableObject
 {
     private String type;
-    private int requiredCuttingTime = 300;
+    int requiredCuttingTime = 200;
     private int currentCuttingTime = 0;
     
     SimpleTimer cuttingTimer = new SimpleTimer();

@@ -65,7 +65,38 @@ public class PlayerController extends SuperSmoothMover
      * serves food to plate if possible
      */
     private void checkIfServeFoodToPlate() {
+        //do nothing is player is not holding anything
+        if (!isHoldingObject || holdingObject == null) return;
+    
+        // Only serve if player is holding an empty plate
+        if (!(holdingObject instanceof Plate)) return;
+        Plate holdingPlate = (Plate) holdingObject;
+        if(! holdingPlate.isEmpty()) return;
         
+        //do nothing is no counter nearby
+        Counter selectedCounter = getSelectedCounter();
+        if (selectedCounter == null) return;
+    
+        //food can only be placed inside pot
+        HoldableObject objectOnCounter = selectedCounter.getObjectOnTop();
+        if (!(objectOnCounter instanceof Pot)) return;
+        //food can only be served when food in pot is done cooking
+        Pot selectedPot = (Pot) objectOnCounter;
+        if (! selectedPot.hasFinishedCooking()) return;
+        
+        if(selectedPot.getType().equals("onion")) {
+            holdingPlate.setType ("onion");
+            holdingPlate.setImageToOnionSoupPlate(); 
+        } else if(selectedPot.getType().equals("tomato")) {
+            holdingPlate.setType ("tomato");
+            holdingPlate.setImageToTomatoSoupPlate(); 
+        } else if(selectedPot.getType().equals("mushroom")) {
+            holdingPlate.setType ("mushroom");
+            holdingPlate.setImageToMushroomSoupPlate(); 
+        }
+        
+        selectedPot.setToEmptyPotStatus();
+        holdingPlate.setIsEmpty(false);
     }
     
     /**
