@@ -22,6 +22,8 @@ public class Order extends Actor
     Color yellow = new Color (227, 204, 0);
     Color red = new Color (196, 23, 0);
     
+    private String type;
+    
     public Order() {
         tomatoSoupOrder.scale(width, height);
         mushroomSoupOrder.scale(width, height);
@@ -47,12 +49,19 @@ public class Order extends Actor
     
     private void createRandomOrder() {
         int num = Greenfoot.getRandomNumber(3);
-        if (num == 0) setImage(tomatoSoupOrder);
-        else if (num == 1) setImage(mushroomSoupOrder);
-        else if (num == 2) setImage (onionSoupOrder);
+        if (num == 0){
+            setImage(tomatoSoupOrder);
+            type = "tomato";
+        } else if (num == 1){
+            setImage(mushroomSoupOrder);
+            type = "mushroom";
+        } else if (num == 2){
+            setImage (onionSoupOrder);
+            type = "onion";
+        }
     }
     
-    private void removeSelf() {
+    public void removeSelf() {
         MyWorld w = (MyWorld) getWorld();
     
         // Remove from array
@@ -79,5 +88,9 @@ public class Order extends Actor
         } else {
             countDownBar.setColors(green, grey);
         }
+    }
+    
+    public String getType() {
+        return type;
     }
 }

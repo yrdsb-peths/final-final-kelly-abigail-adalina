@@ -48,6 +48,7 @@ public class PlayerController extends SuperSmoothMover
             holdOrPlaceDownHoldableObject();
             checkIfAddFoodToPot();
             checkIfServeFoodToPlate();
+            checkIfDeliverFood();
         }
         
         MyWorld w = (MyWorld) getWorld();
@@ -61,6 +62,39 @@ public class PlayerController extends SuperSmoothMover
         }
     }
     
+    /**
+     * delivers food in plate to a devivery counter if possible
+     */
+    private void checkIfDeliverFood() {
+        Counter selectedCounter = getSelectedCounter();
+        if(selectedCounter == null) return;
+        if(! (selectedCounter instanceof DeliveryCounter)) return;
+        
+        if(! (holdingObject instanceof Plate) )return;
+        Plate holdingPlate = (Plate) holdingObject;
+        if(holdingPlate.isEmpty())return;
+        
+        String type = holdingPlate.getType();
+        
+        MyWorld w = (MyWorld) getWorld();
+        boolean existMatchingOrder = false;
+        for (int i = 0; i < w.soupOrders.length; i++) {
+            if (w.soupOrders[i] != null && w.soupOrders[i].getType().equals(type)) {
+                w.soupOrders[i].removeSelf();
+                existMatchingOrder = true;
+                break;
+            }
+        }
+        
+        if (existMatchingOrder) {
+            removeHoldingObject();
+            Plate plate = new Plate();
+            w.plateCounter.setObjectOnTop(plate);
+            w.addObject(plate, w.plateCounter.getX(), w.plateCounter.getY());
+        } else {
+            return;
+        }
+    }
     /**
      * serves food to plate if possible
      */
@@ -187,7 +221,6 @@ public class PlayerController extends SuperSmoothMover
         if (selectedCounter != null) {
             HoldableObject selectedObject = selectedCounter.getObjectOnTop();
             if (isHoldingObject) {
-                
                 /*
                  * place down object if:
                  * 1. player is holding an object
@@ -204,17 +237,13 @@ public class PlayerController extends SuperSmoothMover
                 holdingObject.setIsBeingHeld(false);
                 holdingObject = null;
                 isHoldingObject = false;
-            
-                
             } else {
-                
                 /*
                  * take object up if
                  * 1. player is not holding an object
                  * 2. there is an object on the nearby Counter
                  */
                 if (selectedObject != null){
-                    
                     selectedObject.setIsBeingHeld(true);
                     holdingObject = selectedObject;
                     isHoldingObject = true;

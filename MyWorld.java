@@ -7,6 +7,7 @@ public class MyWorld extends World {
     
     public PlayerController player = new PlayerController();
     public PlayerImage playerImage = new PlayerImage();
+    public PlateCounter plateCounter = new PlateCounter();
     
     public Order[] soupOrders = new Order[5];
     
@@ -110,8 +111,7 @@ public class MyWorld extends World {
         //delivery counter
         LeftDeliveryCounter deliveryCounter = new LeftDeliveryCounter();
         addObject(deliveryCounter, 20+14*unitWidth, 4*unitWidth);
-        
-        PlateCounter plateCounter = new PlateCounter();
+    
         addObject (plateCounter, 20+14*unitWidth - counterOffset, 5*unitWidth + counterOffset);
         
         // left column of counters

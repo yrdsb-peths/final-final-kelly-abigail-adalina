@@ -57,4 +57,8 @@ public class Plate extends HoldableObject
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
+    
+    public String getType() {
+        return type;
+    }
 }
